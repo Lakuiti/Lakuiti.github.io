@@ -1,4 +1,6 @@
-let f12, m18, hmsgs, now, hour, minute, zalgo, zaldiv, hentai, myth_pwd, state, in_game, d1, c1, narr, saves; // 隐式全局补声明 (原本没有关键字)
+/* exported judgement, reset, change_meets */
+/* global hanzi, msgs, state:writable */
+let f12, m18, hmsgs, now, hour, minute, zalgo, zaldiv, hentai, myth_pwd, in_game, d1, c1, narr, saves; // 隐式全局补声明 (原本没有关键字)
 const msg = []; // 我说的话
 let ordmsg = f12 = 0; // 信息序号; 按 f12 的次数;
 let your_name; // 你的名字是……?
@@ -66,7 +68,7 @@ document.addEventListener('keydown', function(event){
 };*/
 
 function wait(x){
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		setTimeout(() => resolve(x), x)
 	});
 }

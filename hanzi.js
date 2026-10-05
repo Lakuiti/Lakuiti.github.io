@@ -1,3 +1,5 @@
+/* global in_game:writable */
+let state;
 const lv4 = [
 ['爨', 'cuàn', '烧火做饭'],
 ['埒', 'liè', '矮墙；田塍'],

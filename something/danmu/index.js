@@ -31,7 +31,7 @@ document.onkeydown = function(event) {
 		var iwanttosay = ["不要按F12哦……", ""];
 		if (f12 == 16){
 			createDanmu("好好好…… 这么喜欢 F12 是吧🫘, 直接送你去 GitHub~", {background: "red"});
-			setInterval("location.href = 'https://github.com/mybignumisverygood';", 2500);
+			setInterval("location.href = 'https://github.com/Lakuiti';", 2500);
 		} else if (f12 > 16){
 			createDanmu("……", {color: "red"});
 		} else {

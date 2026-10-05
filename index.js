@@ -44,7 +44,7 @@ document.onkeydown = function(event) {
 		if (f12 == 16){
 			createNewMsg("好好好…… 这么喜欢 F12 是吧🫘, 直接送你去 GitHub~");
 			msg[ordmsg - 1].style.color = "red";
-			setInterval("location.href = 'https://github.com/mybignumisverygood';", 2500);
+			setInterval("location.href = 'https://github.com/Lakuiti';", 2500);
 		} else if (f12 > 16){
 			createNewMsg("……");
 			msg[ordmsg - 1].style.color = "red";

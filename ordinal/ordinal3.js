@@ -1,3 +1,4 @@
+let celm, fundEl, timeEl, recurDepth; // 隐式全局补声明 (原本没有关键字)
 ordinum = document.getElementById("ordinum");
 ordinal = document.getElementById("ordinal");
 celm = document.getElementById('setMode');
@@ -8,7 +9,7 @@ timeEl = document.getElementById('time');
 const epsilon = EN(3).tetr(3);
 const ep1 = epsilon.tetr(3);
 const ep2 = ep1.tetr(3);
-var fundWidth, fundHeight;
+let fundWidth, fundHeight;
 
 function EN(x){
 	return ExpantaNum(x);
@@ -17,7 +18,7 @@ function EN(x){
 function NZ(x){
 	return !x.sub(1).isneg();
 }
-var ordivar = EN(0);
+let ordivar = EN(0);
 function fund(){
 	fundEl.style.display = "block";
 	fundWidth = fundEl.getBoundingClientRect().width;
@@ -57,7 +58,7 @@ function display(){
 		ordinal.innerHTML = formaty(number(ordivar));
 		recurDepth = 0;
 	}else{
-		var p1 = formaty1(ordivar);
+		const p1 = formaty1(ordivar);
 		ordinum.innerHTML = formatWhole(p1[0]);
 		ordinal.innerHTML = p1[1];
 		// if(p1[1].match(/ζ/g).length==3){console.log(ordivar); return;}
@@ -79,19 +80,19 @@ function formaty(x){
 		return "ω"+(NZ(x.div(3).floor().sub(1))?x.div(3).floor():"")+(NZ(x.mod(3))?"+"+x.mod(3).floor():"");
 	// ω^2<=x<ε_0, ε_0=3^^3=7e12
 	} else if (x.lt(epsilon)){
-		var expo = x.logBase(3).floor();
-		var fac = x.div(EN(3).pow(expo)).floor();
-		var suffix = formaty(x.mod(EN(3).pow(expo)));
+		let expo = x.logBase(3).floor();
+		let fac = x.div(EN(3).pow(expo)).floor();
+		const suffix = formaty(x.mod(EN(3).pow(expo)));
 		return "ω<sup>"+formaty(expo)+"</sup>"+(NZ(fac.sub(1))?fac:"")+(suffix!="0"?"+"+suffix:"");
 	} else if (x.lt(ep1)){
-		var expo = x.logBase(epsilon).floor();
-		var fac = x.div(EN(epsilon).pow(expo)).floor();
+		let expo = x.logBase(epsilon).floor();
+		let fac = x.div(EN(epsilon).pow(expo)).floor();
 		return "ε<sub>0</sub><sup>"+(NZ(expo.sub(1))?formaty(expo):"")+"</sup>"+(NZ(fac.sub(1))?"("+formaty(fac)+")":"");
 	} else if (x.lt(ep2)){
-		var expo = x.logBase(ep1).floor();
+		let expo = x.logBase(ep1).floor();
 		return "ε<sub>1</sub><sup>"+(NZ(expo.sub(1))?formaty(expo):"")+"</sup>";
 	} else if (x.lt(ep2.tetr(3))){
-		var expo = x.logBase(ep2).floor();
+		let expo = x.logBase(ep2).floor();
 		return "ε<sub>2</sub><sup>"+(NZ(expo.sub(1))?formaty(expo):"")+"</sup>";
 	} else {
 		return "ε<sub>ω</sub>";
@@ -116,15 +117,15 @@ function formaty1(x){
 		if(x.lt(EN(42337))){
 			return [number(x), formaty(number(x))];
 		}
-		var base_x = x.sub(42337).pow(1.1).add(1350);
+		let base_x = x.sub(42337).pow(1.1).add(1350);
 		return [Epsilons(formaty1(base_x)[0]), "ε<sub>"+formaty1(base_x)[1]+"</sub>"];
 	} else if(x.lt(EN(60887))){
-		var base_x = ExpantaNum.min(x.sub(59364).pow(1.5), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+		let base_x = ExpantaNum.min(x.sub(59364).pow(1.5), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
 		return [zeta.pow(formaty1(base_x)[0]), (!"01".includes(formaty1(base_x)[1]) ?
 												"ζ<sub>0</sub><sup>"+formaty1(base_x)[1]+"<\sup>" :
 												"<font color='#fc6'>ζ<sub>0</sub></font>=ε<sub>ε<sub>ε<sub>0</sub></sub></sub>")];
 	} else{
-		var base_x = ExpantaNum.min(x.sub(60887).pow(1.5).add(854), x.sub(1));
+		let base_x = ExpantaNum.min(x.sub(60887).pow(1.5).add(854), x.sub(1));
 		return [z1.pow(formaty1(base_x)[0]), "ζ<sub>1</sub><sup>"+formaty1(base_x)[1]+"<\sup>"];
 	}
 }

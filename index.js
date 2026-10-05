@@ -1,7 +1,8 @@
-var msg = []; // 我说的话
-var ordmsg = f12 = 0; // 信息序号; 按 f12 的次数;
-var your_name; // 你的名字是……?
-var what = [NaN, false, 0, 0, false, false, false, false, false] // 还是从 1 开始好! (指下标 0 是 NaN)
+let f12, m18, hmsgs, now, hour, minute, zalgo, zaldiv, hentai, myth_pwd, state, in_game, d1, c1, narr, saves; // 隐式全局补声明 (原本没有关键字)
+const msg = []; // 我说的话
+let ordmsg = f12 = 0; // 信息序号; 按 f12 的次数;
+let your_name; // 你的名字是……?
+let what = [NaN, false, 0, 0, false, false, false, false, false] // 还是从 1 开始好! (指下标 0 是 NaN)
 /* 我又怎么了?; 1
 人类的听话程度, 听话的人类会给彩蛋吃; 2
 人类的伤心程度, 伤心的人类会同化旁白; 3
@@ -11,25 +12,25 @@ var what = [NaN, false, 0, 0, false, false, false, false, false] // 还是从 1 
 人类的开场白; 8
 */
 
-var meets = 0, startmeets; // 见面次数; 刚加载页面时的刷新次数
-var h = false; // 要听我说完开场白哦…
-var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
-var pron = "人类"; // 人类喜欢的称呼……
-var m16 = m18 = false; // 骗人
-var m27 = false; // 说不说开场白呢
-var your_intro = []; // 人类的开场白
-var m29, m29__ = false;
-var sumh1 = 0;
+let meets = 0, startmeets; // 见面次数; 刚加载页面时的刷新次数
+let h = false; // 要听我说完开场白哦…
+let h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
+let pron = "人类"; // 人类喜欢的称呼……
+let m16 = m18 = false; // 骗人
+let m27 = false; // 说不说开场白呢
+let your_intro = []; // 人类的开场白
+let m29, m29__ = false;
+let sumh1 = 0;
 
-var returm = false; // return 不 return?
-var reset_ = false; // reset 没 reset? (哇对仗工整诶!)
-var zhang = ["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625", "zhhan25"];
-var wu = ["wissea", "吴亦萱", "物以轩", "yee"];
-var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "圆圈", "圆圈小姐", "圆规", "圆规小姐", "wdhhbcsztnl",
+let returm = false; // return 不 return?
+let reset_ = false; // reset 没 reset? (哇对仗工整诶!)
+const zhang = ["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625", "zhhan25"];
+const wu = ["wissea", "吴亦萱", "物以轩", "yee"];
+const huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "圆圈", "圆圈小姐", "圆规", "圆规小姐", "wdhhbcsztnl",
 			"或隐含", "霍尹涵", "好与坏", "good and bad", "lxlhs60", "琼", 
 			"长叹一声氦", "开朗的社恐", "长叹一声h", "yoitowarui", "好いと悪い", "好いと坏い", "好いと壊い"];
-var pls = zhang.concat(wu).concat(huo);
-var notems = [  "某只薛姓小猫", "薛萱锥", "xxz",
+const pls = zhang.concat(wu).concat(huo);
+const notems = [  "某只薛姓小猫", "薛萱锥", "xxz",
 				"浅梦大王", "qm大王", "浅梦.", "浅梦", "贺钦阳", "洛七", "洛七是也",
 				"水美", "wb", "water beauty", "waterbeauty", "海茁尔", "黑猪耳", "hwo",
 				"yita", "幻想与冲击",
@@ -288,7 +289,7 @@ async function judgement(m){
 		const my_names = ["洛一", "搞到", "高导", "G-Lion", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu"];
 		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~～-` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
-		var ordtmp = ordmsg;
+		const ordtmp = ordmsg;
 		if (meets == 29 && !h) return ;
 		if (meets == 28 && m27 && !what[8]){
 			if (myth_pwd == "结束"){what[8] = true; createNewMsg("说完了吗—— 好的! 之后还会有这样的机会的哦~(大概吧w)");}
@@ -403,7 +404,7 @@ async function judgement(m){
 			createNewMsg("我不知道! 带'吗'的我统统回答我不知道!");
 		} else if ((myth_pwd.substring(0, 2) == "我是" || myth_pwd.substring(0, 2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
 			// 自我介绍
-			var k1 = false;
+			let k1 = false;
 			if (your_name){ // 你已经有名字了啊……
 				if (your_name == myth_pwd.slice(2)){createNewMsg("我知道呢……! 你之前不是说过吗?"); k1 = true; return ;}
 				else createNewMsg("哇你改名了吗? 总之我会记住这个最新的名字的——"); await wait(2000);
@@ -426,10 +427,10 @@ async function judgement(m){
 		} else if (myth_pwd.includes("彩蛋")){
 			createNewMsg("你说彩蛋……? 是有的哦, 但是得看你的聪明程度了! 听话又有毅力的" + pron + "会有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢!");
 		} else if (myth_pwd.includes("喜欢") || myth_pwd.includes("爱")){
-			var loveOrLove = myth_pwd.includes("喜欢") ? "喜欢" : "爱";
-			var startLoving = myth_pwd.includes("喜欢") ? myth_pwd.indexOf("喜") : myth_pwd.indexOf("爱");
-			var subjectLove = myth_pwd[startLoving - 1]; // 谁喜欢
-			var objectLove = myth_pwd[startLoving + (myth_pwd.includes("喜欢") ? 2 : 1)]; // 谁被喜欢
+			const loveOrLove = myth_pwd.includes("喜欢") ? "喜欢" : "爱";
+			const startLoving = myth_pwd.includes("喜欢") ? myth_pwd.indexOf("喜") : myth_pwd.indexOf("爱");
+			const subjectLove = myth_pwd[startLoving - 1]; // 谁喜欢
+			const objectLove = myth_pwd[startLoving + (myth_pwd.includes("喜欢") ? 2 : 1)]; // 谁被喜欢
 			if (subjectLove == "我"){
 				if (objectLove == "你") createNewMsg("<font color='#FFC0CB'>……!!</font>");
 				else if (objectLove == "我") createNewMsg("真巧呢, 我也" + loveOrLove + "我");
@@ -524,7 +525,7 @@ function load(k){
 	}
 	if (saves.m29 != undefined && !m29__){
 		m29__ = false;
-		var m29_ = saves.m29;
+		const m29_ = saves.m29;
 		m29_.meets = 29
 		localStorage.setItem("narr", JSON.stringify(m29_));
 		saves = JSON.parse(localStorage.getItem("narr"));

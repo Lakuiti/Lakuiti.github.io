@@ -1,12 +1,13 @@
+let displayInterval; // 隐式全局补声明 (原本没有关键字)
 displayInterval = setInterval(display, 20);
 
-var EN = ExpantaNum;
+const EN = ExpantaNum;
 
 function NZ(x){
 	return !x.sub(1).isneg();
 }
-var ordivar = EN(0);
-var recur = EN(0);
+let ordivar = EN(0);
+let recur = EN(0);
 
 function formatTime(sec){
 	if (sec<0){ return "0秒"; }
@@ -22,7 +23,7 @@ function display(){
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
 	} else {
-		var p1 = formaty1(ordivar);
+		const p1 = formaty1(ordivar);
 		ordinum.innerHTML = formatWhole(p1[0]);
 		ordinal.innerHTML = p1[1];
 	}
@@ -60,24 +61,24 @@ function formaty(x, m=0, l=false){
 		return "ω"+(m!=3?(NZ(x.div(4).floor().sub(1))?x.div(4).floor():"")+(NZ(x.mod(4))?"+"+x.mod(4).floor():""):"");
 	// ω^2<=x<ε_0, ε_0=3^^3=7e12
 	} else if (x.lt(epsilon)){
-		var expo = x.logBase(4).floor();
-		var fac = x.div(EN(4).pow(expo)).floor();
+		let expo = x.logBase(4).floor();
+		let fac = x.div(EN(4).pow(expo)).floor();
 		if (m!=3 && x.lt(EN("4").pow(EN("4").pow(EN("8"))))){
 			var suffix = formaty(x.mod(EN(4).pow(expo)), 1);
 		}
 		return "ω<sup>"+formaty(expo)+"</sup>"+(NZ(fac.sub(1))?fac:"")+(suffix!="0"&&suffix?"+"+suffix:"");
 	} else if (x.lt(ep1)){
-		var expo = x.logBase(epsilon).floor();
-		var fac = x.div(EN(epsilon).pow(expo)).floor();
+		let expo = x.logBase(epsilon).floor();
+		let fac = x.div(EN(epsilon).pow(expo)).floor();
 		return "ε<sub>0</sub><sup>"+(NZ(expo.sub(1))&&m<2?formaty(expo):"")+"</sup>";
 	} else if (x.lt(ep2)){
-		var expo = x.logBase(ep1).floor();
+		let expo = x.logBase(ep1).floor();
 		return "ε<sub>1</sub><sup>"+(NZ(expo.sub(1))&&m<2?formaty(expo):"")+"</sup>";
 	} else if (x.lt(ep3)){
-		var expo = x.logBase(ep2).floor();
+		let expo = x.logBase(ep2).floor();
 		return "ε<sub>2</sub><sup>"+(NZ(expo.sub(1))&&m<2?formaty(expo):"")+"</sup>";
 	} else if (x.lt(ep3.tetr(4))){
-		var expo = x.logBase(ep3).floor();
+		let expo = x.logBase(ep3).floor();
 		return "ε<sub>3</sub><sup>"+(NZ(expo.sub(1))&&m<2?formaty(expo):"")+"</sup>";
 	} else {
 		return "ε<sub>ω</sub>";
@@ -117,8 +118,8 @@ function formaty1(x, m=0, l=false){
 		if (x.lte(52390)){
 			return [number(x, m, l), formaty(x, m, l)];
 		}
-		var base_x = x.sub(52390).pow(1.1).floor();
-		var loop = formaty1(base_x, EN(4), true);
+		const base_x = x.sub(52390).pow(1.1).floor();
+		const loop = formaty1(base_x, EN(4), true);
 		return [Epsilons(loop[0]), "ε<sub>"+loop[1]+"</sub>" + 
 			(ordivar.lt(54494)?(" ~ "+format(Epsilons(loop[0].floor()))):""
 		)];

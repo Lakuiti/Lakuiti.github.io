@@ -1,4 +1,4 @@
-var lv4 = [
+const lv4 = [
 ['爨', 'cuàn', '烧火做饭'],
 ['埒', 'liè', '矮墙；田塍'],
 ['乜', 'miē', 'miě', '①斜视；方言“什么”，②姓'],
@@ -428,7 +428,7 @@ var lv4 = [
 ['奸宄', 'jiānguǐ', '泛指犯法作乱的坏人；作乱行为'],
 ];
 
-var lv5 = [
+const lv5 = [
 ['屮', 'cǎo', 'chè', '①“草”之异体字，②草初生'],
 ['𤭢', 'cèi', 'suì', '北京官话，打碎东西'],
 ['嬎', 'fàn', 'fù', '①方言，禽类下蛋，②兔崽'],
@@ -566,7 +566,7 @@ var lv5 = [
 ['闬闳', 'hànhóng', '里巷；里巷的大门；住宅的大门'],
 ];
 
-var lv6 = [
+const lv6 = [
 ['𬼄', 'àngsī', '单位“盎司”合字'],
 ['𬧠', 'bān', '闽语，后背'],
 ['𲁓', 'biàng', '藏匿；地名用字，在江西信丰县'],
@@ -649,7 +649,7 @@ var lv6 = [
  
 in_game = false;
 state = 0;
-var lv, ques, life;
+let lv, ques, life;
 function game(lv, ques, life){
 	createNewEl(lv[Math.floor(Math.random() * lv.length)], "h1", "hanzi");
 	return 0;
@@ -658,7 +658,7 @@ function game(lv, ques, life){
 function hanzi(set){
 	if(!set){return ;}
 	if(state == 3){game(lv, ques, life);}
-	var mode = {"普通" : lv4, "困难" : lv5, "地狱" : lv6};
+	const mode = {"普通" : lv4, "困难" : lv5, "地狱" : lv6};
 	switch (state){
 		case 0:
 			if(!mode[set]){

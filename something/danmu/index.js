@@ -1,17 +1,17 @@
-var colors = document.getElementsByClassName("color");
-var main = document.getElementById("main");
+const colors = document.getElementsByClassName("color");
+const main = document.getElementById("main");
 var rgb = document.getElementById("rgb");
-var preview = document.getElementById("preview");
+const preview = document.getElementById("preview");
 var setting = {}; 
 
-var lockeds = document.getElementsByClassName("locked");
-var checkGradient = document.getElementById("gradient");
-var gradient = [false, false];
+const lockeds = document.getElementsByClassName("locked");
+const checkGradient = document.getElementById("gradient");
+const gradient = [false, false];
 
 // 禁用移动端缩放
-var lastTouchEnd = 0; // 爱来自 静默虚空, https://www.cnblogs.com/jingmoxukong 禁用缩放
+let lastTouchEnd = 0; // 爱来自 静默虚空, https://www.cnblogs.com/jingmoxukong 禁用缩放
 document.documentElement.addEventListener('touchend', function (event){
-    var now = Date.now();
+    const now = Date.now();
     if (now - lastTouchEnd <= 300){
         event.preventDefault();
     }
@@ -25,10 +25,10 @@ document.documentElement.addEventListener('touchstart', function (event){
 }, false);
 
 // 禁用 F12
-var f12 = 0;
+let f12 = 0;
 document.onkeydown = function(event) {
 	if (event.keyCode == 123) {
-		var iwanttosay = ["不要按F12哦……", ""];
+		const iwanttosay = ["不要按F12哦……", ""];
 		if (f12 == 16){
 			createDanmu("好好好…… 这么喜欢 F12 是吧🫘, 直接送你去 GitHub~", {background: "red"});
 			setInterval("location.href = 'https://github.com/Lakuiti';", 2500);
@@ -57,7 +57,7 @@ for (let i = 0; i < colors.length; i++){
 		};
 	} else {
 		colors[i].onclick = function (){
-			var style = ["#6CF, #FC6", "red, blue", "red, orange 17%, yellow 33%, green 50%, cyan 67%, blue 83%, purple"][i - 14];
+			let style = ["#6CF, #FC6", "red, blue", "red, orange 17%, yellow 33%, green 50%, cyan 67%, blue 83%, purple"][i - 14];
 			gradientStyle(style);
 			rgb.value = style;
 		};
@@ -65,7 +65,7 @@ for (let i = 0; i < colors.length; i++){
 }
 
 function createMonocolor(){ // 在那个输入框里输入单色的话, 实时变更预览色块的颜色, 并且修改一下弹幕w
-	var color = rgb.value;
+	let color = rgb.value;
 	if ((color == "???" || color == "？？？") && gradient[0]){ // 小彩蛋, 用来解锁渐变色
 		gradientStyle("#FC6, #6CF");
 		rgb.setAttribute("placeholder", "");
@@ -118,7 +118,7 @@ function gradientStyle(color){
 }
 
 function createGradient(){
-	var color = rgb.value;
+	let color = rgb.value;
 	color = color.split(",");
 	if (color.length == 1){
 		createMonocolor(color[0].split(" ")[0]);
@@ -130,10 +130,10 @@ function createGradient(){
 }
 
 // 预设动画们!
-var goStraight = [{transform: "translateX(100vw)"}]; // 从左到右水平滚动
+const goStraight = [{transform: "translateX(100vw)"}]; // 从左到右水平滚动
 
 function createDanmu(danmu, setting = {}){
-	var newDanmu = document.createElement("p");
+	const newDanmu = document.createElement("p");
 	newDanmu.textContent = danmu;
 	for (let i = 0; i < Object.keys(setting).length; i++){ // 将 setting 的设置落实到弹幕上!
 		newDanmu.style[Object.entries(setting)[i][0]] = Object.entries(setting)[i][1];
@@ -146,7 +146,7 @@ function createDanmu(danmu, setting = {}){
 }
 
 function toggle(id){
-	var toggleEl = document.getElementById(id);
+	const toggleEl = document.getElementById(id);
 	toggleEl.innerHTML = (toggleEl.innerHTML == "隐藏" ? "显示" : "隐藏");
 	(toggleEl.innerHTML == "隐藏" ?
 	document.getElementById(id.slice(6).toLowerCase()).style.display = "block" : // slice(6) 剔除前面的 toggle
